@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 13-08-2024 a las 17:18:49
--- Versión del servidor: 10.11.8-MariaDB-cll-lve
--- Versión de PHP: 7.2.34
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 14-08-2024 a las 04:52:36
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,20 +65,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellidos`, `email`, `password`, `edad`, `rol`, `status`) VALUES
-(39, 'jhgjh', 'jhgjhg', 'jjhgjhg@gmail.com', '1234', 15, 'cliente', ''),
-(44, 'samuel', 'SOTELO MENDOZA', 'sam123@gmail.com', '12345', 21, 'administrador', ''),
-(45, 'Benjamin', 'Manjarrez Brito', 'brito214@gmail.com', '123', 27, 'cliente', ''),
-(46, 'fiorela', 'gomez', 'fiorelaochoa074@gmail.com', '123456', 18, 'cliente', ''),
-(47, 'maria', 'lopez', 'adfdsnfsq@gmail.com', '123456', 22, 'administrador', ''),
+(46, 'fiorelaa', 'gomez', 'fiorelaochoa074@gmail.com', '123456', 18, 'cliente', 'inactivo'),
 (49, 'FRANCISCO', 'hernandez lopez', 'gonzaleztorresfrancisca959@gmail.com', '12345', 18, 'administrador', ''),
 (53, 'francisca ', 'gonzalez', 'gonzaleztorresfrancisca@gmail.com', '12345', 20, 'cliente', ''),
-(54, 'Natalí', 'Morales Martínez', 'dnamm028@gmail.com', '12345', 19, 'cliente', ''),
-(55, 'SABINO', 'LOPEZ', 'mmmm@gmail.com', '123', 20, 'cliente', ''),
-(56, 'kkk', ',,', 'kk@gg', 'jjjj', 0, 'cliente', ''),
-(57, 'kkkk', 'hhhhh', 'jjjj@fff', 'jjjjjj', 1, 'cliente', ''),
-(58, 'aaaa', 'aaaaa', 'aa@aa', '45465', 88, 'cliente', 'activo'),
-(59, 'kkkkk', 'rrr', 'ttt@fff', 'rrrr', 9, 'cliente', 'activo'),
-(60, '', '', '', '', 0, '', '');
+(61, 'drama', 'drama', 'admin', 'root', 23, 'administrador', 'activo');
 
 --
 -- Índices para tablas volcadas
@@ -111,7 +101,7 @@ ALTER TABLE `documentos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Restricciones para tablas volcadas
