@@ -5,7 +5,7 @@ if (!isset($_SESSION['email'])) {
     exit;
 }
 
-// Conectar con la base de datos
+
 $mysqli = new mysqli("localhost", "u862678554_fiorela", "Fiorela2005*", "u862678554_gimnasio");
 
 if ($mysqli->connect_errno) {
@@ -16,7 +16,6 @@ if ($mysqli->connect_errno) {
 $id_usuario = $_GET['id_usuario'] ?? '';
 
 if ($id_usuario) {
-    // Cargar datos actuales del usuario
     $stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE id_usuario = ?");
     $stmt->bind_param("i", $id_usuario);
     $stmt->execute();
@@ -29,6 +28,7 @@ if ($id_usuario) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
     $id_usuario = $_POST['id_usuario'];
     $nombre = $_POST['nombre'];
     $apellidos = $_POST['apellidos'];
@@ -36,23 +36,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $edad = $_POST['edad'];
     $rol = $_POST['rol'];
-    $status= $_POST['status'];
-    
-$modifica = $mysqli->query("UPDATE usuarios SET nombre = '$nombre', apellidos='$apellidos',email = '$email' password='$password', edad = '$edad', rol = '$rol', status = '$status' WHERE id_usuario = '$id_usuario'");
+    $status = $_POST['status'];
 
-    if ($modifica->execute()) {
+    $query = "UPDATE usuarios SET 
+              nombre = '$nombre', 
+              apellidos = '$apellidos', 
+              email = '$email', 
+              password = '$password', 
+              edad = '$edad', 
+              rol = '$rol', 
+              status = '$status' 
+              WHERE id_usuario = '$id_usuario'";
+
+    if ($mysqli->query($query) === TRUE) {
         echo '<script>alert("Usuario Modificado Correctamente")</script>';
         echo "<script>location.href='consultar.php'</script>";
     } else {
         echo '<script>alert("Error, no se pudo modificar el usuario")</script>';
         echo "<script>location.href='consultar.php'</script>";
     }
-
-    $stmt->close();
 }
 
 $mysqli->close();
 ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -88,12 +95,16 @@ $mysqli->close();
     <br>
     <label for="rol">Rol:</label>
     <select name="rol" id="rol" required>
-        <option value="usuario" <?php if ($usuario['rol'] == 'usuario') echo 'selected'; ?>>Usuario</option>
+        <option value="cliente" <?php if ($usuario['rol'] == 'cliente') echo 'selected'; ?>>Cliente</option>
         <option value="administrador" <?php if ($usuario['rol'] == 'administrador') echo 'selected'; ?>>Administrador</option>
     </select>
     <br>
-    <label for="password">Estatus:</label>
-    <input type="text" name="status" id="password" value="<?php echo htmlspecialchars($usuario['status']); ?>" required>
+    <label for="status">Estatus:</label>
+    <select name="status" id="status" required>
+        <option value="inactivo" <?php if ($usuario['status'] == 'inactivo') echo 'selected'; ?>>Inactivo</option>
+        <option value="activo" <?php if ($usuario['status'] == 'activo') echo 'selected'; ?>>Activo</option>
+    </select>
+    <br>
     <input type="submit" value="Modificar">
 </form>
 
